@@ -1,0 +1,18 @@
+.submit-btn{
+    height:45px;
+    width:526px
+}
+
+.inputs-form {
+    min-width: 150px;
+    max-width: 523px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table tr:hover {
+    cursor: pointer;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

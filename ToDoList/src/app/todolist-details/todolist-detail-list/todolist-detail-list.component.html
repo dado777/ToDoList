@@ -1,0 +1,19 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Задача</th>
+            <th>Состояние</th>
+            <th>Дата начала</th>
+            <th>Дата окончания</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tdd of service.list">
+        <td (click)="updateForm(tdd)">{{tdd.TaskName}}</td>
+        <td (click)="updateForm(tdd)">{{tdd.Status}}</td>
+        <td (click)="updateForm(tdd)">{{tdd.StartDate}}</td>
+        <td (click)="updateForm(tdd)">{{tdd.EndDate}}</td>
+        <td><i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(tdd.Id)"></i></td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,93 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <!--<div class="form-group">
+        <div class="input-group">
+                <div class="input-group-text bg-white">
+                    <i class="fa-solid fa-list" [class.green-icon]="TaskName.valid" [class.red-icon]="TaskName.invalid && TaskName.touched"></i>
+                </div>
+            <input name="TaskName" #TaskName="ngModel" [(ngModel)]="service.formData.TaskName" class="form-control" placeholder="Название задачи" required minlength="4">
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="input-group">
+                <div class="input-group-text bg-white">
+                    <i class="fa-solid fa-list-check" [class.green-icon]="Status.valid" [class.red-icon]="Status.invalid && Status.touched"></i>
+                </div>
+            <input name="Status" #Status="ngModel" [(ngModel)]="service.formData.Status" class="form-control" placeholder="Текущее состояние" required minlength="4">
+        </div>
+    </div>-->
+    <mat-form-field  class="inputs-form">
+        <input type="text" matInput [formControl]="ToDoForm.controls.TaskNameLength" [(ngModel)]="service.formData.TaskName" name="TaskName" [errorStateMatcher]="matcher" placeholder="Название задачи">
+        <mat-hint>Количество символов должно быть больше 10 и меньше 100!</mat-hint>
+        <mat-error *ngIf="ToDoForm.controls.TaskNameLength.hasError('minlength') && !ToDoForm.controls.TaskNameLength.hasError('required')">
+            Недостаточно символов
+        </mat-error>
+        <mat-error *ngIf="ToDoForm.controls.TaskNameLength.hasError('maxlength')">
+            Превышен лимит символов
+        </mat-error>
+        <mat-error *ngIf="ToDoForm.controls.TaskNameLength.hasError('required')">
+            <strong>Требуется</strong> ввод
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field  class="inputs-form">
+        <input type="text" matInput [formControl]="ToDoForm.controls.StatusLength" [(ngModel)]="service.formData.Status" name="Status" [errorStateMatcher]="matcher" placeholder="Текущее состояние">
+        <mat-hint>Количество символов должно быть больше 5 и меньше 20!</mat-hint>
+        <mat-error *ngIf="ToDoForm.controls.StatusLength.hasError('minlength') && !ToDoForm.controls.StatusLength.hasError('required')">
+            Недостаточно символов
+        </mat-error>
+        <mat-error *ngIf="ToDoForm.controls.StatusLength.hasError('maxlength')">
+            Превышен лимит символов
+        </mat-error>
+        <mat-error *ngIf="ToDoForm.controls.StatusLength.hasError('required')">
+            <strong>Требуется</strong> ввод
+        </mat-error>
+    </mat-form-field>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <mat-form-field>
+                <input matInput [(ngModel)]="service.formData.StartDate" [formControl]="ToDoForm.controls.StartDate" name="StartDate" [ngxMatDatetimePicker]="StartDate" placeholder="Дата начала" [min]="currentDate">
+                <mat-error *ngIf="ToDoForm.controls.StartDate.hasError('required')">
+                    <strong>Требуется</strong> ввод
+                </mat-error>
+                <mat-datepicker-toggle matSuffix [for]="$any(StartDate)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #StartDate [showSeconds]="false" ></ngx-mat-datetime-picker>
+            </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+            <mat-form-field>
+                <input matInput [(ngModel)]="service.formData.EndDate" [formControl]="ToDoForm.controls.EndDate" name="EndDate" [ngxMatDatetimePicker]="EndDate" placeholder="Дата окончания" [min]="service.formData.StartDate">
+                <mat-error *ngIf="ToDoForm.controls.EndDate.hasError('required')">
+                    <strong>Требуется</strong> ввод
+                </mat-error>
+                <mat-datepicker-toggle matSuffix [for]="$any(EndDate)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #EndDate [showSeconds]="false" ></ngx-mat-datetime-picker>
+            </mat-form-field>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <button class="btn btn-success btn-block submit-btn" type="submit" [disabled]="!ToDoForm.valid"><i class="fa-solid fa-share-from-square"></i> Сохранить</button>
+    </div>
+
+        <!--<div class="row">
+        <div class="form-group col-md-6">
+            <div class="input-group">
+                    <div class="input-group-text bg-white">
+                        <i class="fa-solid fa-hourglass-start fa-lg" [class.green-icon]="StartDate.valid" [class.red-icon]="StartDate.invalid && StartDate.touched"></i>
+                    </div>
+                <input type="datetime-local" name="StartDate" #StartDate="ngModel" [(ngModel)]="service.formData.StartDate" class="form-control" placeholder="Дата начала" required>
+            </div>
+        </div>
+        <br>
+        <div class="form-group col-md-6">
+            <div class="input-group">
+                    <div class="input-group-text bg-white">
+                        <i class="fa-solid fa-hourglass-end fa-lg" [class.green-icon]="EndDate.valid" [class.red-icon]="EndDate.invalid && EndDate.touched"></i>
+                    </div>
+                <input type="datetime-local"  name="EndDate" #EndDate="ngModel" [(ngModel)]="service.formData.EndDate" class="form-control" placeholder="Дата окончания" min="service.formData.EndDate" required>
+            </div>
+        </div>
+    </div>-->
+
+</form>
